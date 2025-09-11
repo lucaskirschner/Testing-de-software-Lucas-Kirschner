@@ -9,7 +9,7 @@
 static uint16_t * puerto;
 
 static uint16_t LedToMask(int led) {
-    return FIRST_BIT << (led - FIRST_BIT);
+    return FIRST_BIT << (led - LED_TO_BIT_OFFSET);
 }
 
 static bool IsLedValid(int led) {
@@ -21,9 +21,10 @@ static bool IsLedValid(int led) {
     return result;
 }
 
-LedsInitDriver(uint16_t *puerto_virtual){
+void LedsInitDriver(uint16_t *puerto_virtual){
     puerto = puerto_virtual;
-    *puerto = ALL_LED_OFF; // Apagar todos los LEDs al iniciar
+    // *puerto = ALL_LED_OFF; // Apagar todos los LEDs al iniciar
+    LedsTurnOffAll();
 }
 
 void LedsTurnOn(int led){
@@ -36,9 +37,34 @@ void LedsTurnOn(int led){
 
 void LedsTurnOff(int led){
 
-        if (!IsLedValid(led)) {
+    if (!IsLedValid(led)) {
         return;
     }
     
     *puerto &= ~LedToMask(led);
+}
+
+void LedsTurnOnAll(void){
+    *puerto = ~ALL_LED_OFF;
+}
+
+void LedsTurnOffAll(void){
+    *puerto = ALL_LED_OFF;
+}
+
+bool LedsIsOn (int led){
+
+    if (!IsLedValid(led)) {
+        return false;
+    }
+
+    return ((*puerto & LedToMask(led)) != 0);
+}
+
+bool LedsIsOff(int led){
+    if (!IsLedValid(led)) {
+        return false;
+    }
+
+    return ((*puerto & LedToMask(led)) == 0);
 }

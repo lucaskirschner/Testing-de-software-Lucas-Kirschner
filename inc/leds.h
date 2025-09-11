@@ -1,6 +1,13 @@
 #include <stdint.h>
+#include <stdbool.h>
 #include "errores.h"
 
 void LedsInitDriver(uint16_t *puerto_virtual);
-void LedsTurnOn( int led);   // Usando int me aseguro que el procesador va a hacer la operación lo más rápido posible. Recomendable en los casos en que no haya problemas de rango
+void LedsTurnOn (int led);   // Usando int me aseguro que el procesador va a hacer la operación lo más rápido posible. Recomendable en los casos en que no haya problemas de rango
 void LedsTurnOff(int led);
+
+void LedsTurnOnAll (void);
+void LedsTurnOffAll(void);
+
+bool LedsIsOn (int led);
+bool LedsIsOff(int led);
