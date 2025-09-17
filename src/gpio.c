@@ -29,7 +29,7 @@ SPDX-License-Identifier: MIT
 #include <stdint.h>
 #include <stdbool.h>
 #include "gpio.h"
-#include "hal_gpio.h"   // Incluye los prototipos de la HAL utilizada
+#include "hal_gpio.h" // Incluye los prototipos de la HAL utilizada
 
 /* === Macros definitions ====================================================================== */
 
@@ -56,8 +56,8 @@ struct gpio_s {
 
 gpio_t gpioCreate(uint8_t port, uint8_t bit) {
     gpio_t self = malloc(sizeof(struct gpio_s));
-    
-    if(NULL != self){
+
+    if (NULL != self) {
         self->port = port;
         self->bit = bit;
         self->output = false;
@@ -66,25 +66,29 @@ gpio_t gpioCreate(uint8_t port, uint8_t bit) {
 }
 
 void gpioDestroy(gpio_t self) {
-    if (NULL == self) return;
+    if (NULL == self)
+        return;
     free(self);
 }
 
 void gpioSetOutput(gpio_t self, bool output) {
-    if(NULL == self) return;
+    if (NULL == self)
+        return;
     self->output = output;
     hal_gpio_set_direction(self->port, self->bit, output);
 }
 
 void gpioSetState(gpio_t self, bool state) {
-    if (NULL == self) return;
+    if (NULL == self)
+        return;
     if (self->output) {
         hal_gpio_set_output(self->port, self->bit, output);
     }
 }
 
 bool gpioGetState(gpio_t self) {
-    if (NULL == self) return;
+    if (NULL == self)
+        return;
     return hal_gpio_get_input(self->port, self->bit);
 }
 
