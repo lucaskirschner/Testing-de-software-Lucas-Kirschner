@@ -29,11 +29,11 @@ SPDX-License-Identifier: MIT
 #include <stdbool.h>
 #include "main.h"
 #include "gpio.h"
-#include "hal_gpio.h"   // Incluye los prototipos de la HAL utilizada
+#include "hal_gpio.h" // Incluye los prototipos de la HAL utilizada
 
 /* === Macros definitions ====================================================================== */
-#define LED_ROJO_PORT   1
-#define LED_ROJO_BIT    7
+#define LED_ROJO_PORT 1
+#define LED_ROJO_BIT  7
 
 /* === Private data type declarations ========================================================== */
 
@@ -53,7 +53,7 @@ int main(void) {
 
     // Inicialización de periféricos
 
-    while(true){
+    while (true) {
         gpio_t red_led = gpioCreate(LED_ROJO_PORT, LED_ROJO_BIT);
         gpioSetOutput(red_led, true);
         gpioSetState(red_led, false);

@@ -1,16 +1,16 @@
 #ifndef ERRORES_H
 #define ERRORES_H
 
-#define Error(mensaje) RegistrarMensaje(ERROR, __FUNCTION__, __LINE__, mensaje)
-#define Alerta(mensaje) RegistrarMensaje(ALERTA, __FUNCTION__, __LINE__, mensaje)
+#define Error(mensaje)       RegistrarMensaje(ERROR, __FUNCTION__, __LINE__, mensaje)
+#define Alerta(mensaje)      RegistrarMensaje(ALERTA, __FUNCTION__, __LINE__, mensaje)
 #define Informacion(mensaje) RegistrarMensaje(INFORMACION, __FUNCTION__, __LINE__, mensaje)
-#define Registrar(mensaje) RegistrarMensaje(DEPURACION, __FUNCTION__, __LINE__, mensaje)
+#define Registrar(mensaje)   RegistrarMensaje(DEPURACION, __FUNCTION__, __LINE__, mensaje)
 
 typedef enum gravedad_e {
-    ERROR,          //!< Mensaje de error
-    ALERTA,         //!< Mensaje de alerta
-    INFORMACION,    //!< Mensaje de informacion  
-    DEPURACION,     //!< Mensaje de depuracion
+    ERROR,       //!< Mensaje de error
+    ALERTA,      //!< Mensaje de alerta
+    INFORMACION, //!< Mensaje de informacion
+    DEPURACION,  //!< Mensaje de depuracion
 } gravedad_t;
 
 /**
